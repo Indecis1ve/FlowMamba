@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+import argparse
+import os
+import sys
+import logging
+
+# 屏蔽 scapy 底层的非严重警告，保持终端日志清爽
+logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
+from scapy.all import PcapReader, wrpcap, IP, TCP, UDP
+
+def get_five_tuple(pkt):
+    """
+    Nety 网络协议分析逻辑：提取报文的五元组 (源IP, 目的IP, 源端口, 目的端口, 协议)
+    由于同一条流的上下行方向不同，这里采用双向排序(Bidirectional)以确保 A->B 和 B->A 归入同一流。
+    """
+    if not pkt.haslayer(IP): return None
+    ip_layer = pkt[IP]
+    sip, dip = ip_layer.src, ip_layer.dst
+    
+    if pkt.haslayer(TCP):
+        sport, dport = pkt[TCP].sport, pkt[TCP].dport
+        proto = 'TCP'
+    elif pkt.haslayer(UDP):
+        sport, dport = pkt[UDP].sport, pkt[UDP].dport
+        proto = 'UDP'
+    else:
+        return None
+        
+    # 双向对齐逻辑：按 IP 地址大小排序，确保正反双向报文汇聚
+    if sip > dip:
+        return f"{sip}_{sport}_{dip}_{dport}_{proto}"
+    else:
+        return f"{dip}_{dport}_{sip}_{sport}_{proto}"
+
+def main():
+    # 完美适配原数据集脚本的命令行接口
+    parser = argparse.ArgumentParser(description="Nety's 5-Tuple PCAP Splitter")
+    parser.add_argument('-i', '--input', required=True, help="Input PCAP file")
+    parser.add_argument('-o', '--output', required=True, help="Output directory")
+    parser.add_argument('-p', '--prefix', default='', help="Prefix for output files")
+    parser.add_argument('-f', '--format', default='five_tuple', help="Split format (ignored, default is five_tuple)")
+    args = parser.parse_args()
+
+    os.makedirs(args.output, exist_ok=True)
+    flows = {}
+    
+    try:
+        # 使用 PcapReader 迭代读取，避免大文件一次性撑爆 HPC 内存
+        with PcapReader(args.input) as pcap_reader:
+            for pkt in pcap_reader:
+                ft = get_five_tuple(pkt)
+                if not ft: continue
+                if ft not in flows:
+                    flows[ft] = []
+                flows[ft].append(pkt)
+    except Exception as e:
+        print(f"解析 {args.input} 失败: {e}")
+        sys.exit(1)
+        
+    # 将拆分后的流分别写入独立的小 PCAP 文件
+    for ft, pkts in flows.items():
+        out_file = os.path.join(args.output, f"{args.prefix}{ft}.pcap")
+        wrpcap(out_file, pkts)
+
+if __name__ == '__main__':
+    main()

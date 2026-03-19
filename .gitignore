@@ -1,0 +1,28 @@
+# 1. 忽略数据集和元数据
+data/
+*.pcap
+*.npy
+
+# 2. 忽略训练输出、权重和日志
+output/
+logs/
+*.pth
+*.out
+*.log
+
+# 3. 忽略 Python 缓存和系统文件
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+.DS_Store
+
+# 4. 忽略第三方构建库 (如 causal-conv1d 的编译文件)
+build/
+dist/
+*.egg-info/
+*.so
+*.o
+
+# 5. 可选：如果你不想传结果图，可以取消下面这行的注释
+# results/

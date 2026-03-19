@@ -1,0 +1,319 @@
+.
+├── assets
+│   └── NetMamba.png
+├── causal-conv1d-1.1.0
+│   ├── AUTHORS
+│   ├── build
+│   │   ├── bdist.linux-x86_64
+│   │   ├── lib.linux-x86_64-cpython-310
+│   │   │   ├── causal_conv1d
+│   │   │   │   ├── causal_conv1d_interface.py
+│   │   │   │   └── __init__.py
+│   │   │   └── causal_conv1d_cuda.cpython-310-x86_64-linux-gnu.so
+│   │   └── temp.linux-x86_64-cpython-310
+│   │       ├── build.ninja
+│   │       └── csrc
+│   │           ├── causal_conv1d_bwd.o
+│   │           ├── causal_conv1d_fwd.o
+│   │           ├── causal_conv1d.o
+│   │           └── causal_conv1d_update.o
+│   ├── causal_conv1d
+│   │   ├── causal_conv1d_interface.py
+│   │   └── __init__.py
+│   ├── causal_conv1d.egg-info
+│   │   ├── dependency_links.txt
+│   │   ├── PKG-INFO
+│   │   ├── requires.txt
+│   │   ├── SOURCES.txt
+│   │   └── top_level.txt
+│   ├── csrc
+│   │   ├── causal_conv1d_bwd.cu
+│   │   ├── causal_conv1d_common.h
+│   │   ├── causal_conv1d.cpp
+│   │   ├── causal_conv1d_fwd.cu
+│   │   ├── causal_conv1d.h
+│   │   ├── causal_conv1d_update.cu
+│   │   └── static_switch.h
+│   ├── LICENSE
+│   ├── README.md
+│   ├── setup.py
+│   └── tests
+│       └── test_causal_conv1d.py
+├── data
+│   ├── ICNP2024-FinalArxiv
+│   │   ├── CICIoT2022.zip
+│   │   ├── CrossPlatform-Android.zip
+│   │   ├── CrossPlatform-iOS.zip
+│   │   ├── ISCXTor2016.zip
+│   │   ├── ISCXVPN2016.zip
+│   │   └── USTC-TFC2016.zip
+│   ├── USTC_Flows_Processed
+│   │   ├── BitTorrent
+│   │   │   ├── Benign-BitTorrent-BitTorrent-1.2.0.107_443_1.1.204.170_1323_TCP.pcap
+│   │   │   ├── Benign-BitTorrent-BitTorrent-1.2.0.136_443_1.1.119.194_47427_TCP.pcap
+│   │   │   ├── Benign-BitTorrent-BitTorrent-1.2.0.137_443_1.1.117.72_47435_TCP.pcap
+
+│   │       ├── Malware-Zeus-Zeus-8.8.8.8_53_192.168.0.251_65513_UDP.pcap
+│   │       ├── Malware-Zeus-Zeus-8.8.8.8_53_192.168.0.251_65519_UDP.pcap
+│   │       └── Malware-Zeus-Zeus-8.8.8.8_53_192.168.0.251_65521_UDP.pcap
+│   ├── USTC_Metadata
+│   │   ├── Benign-BitTorrent-BitTorrent_stats.npy
+│   │   ├── Benign-FTP-FTP_stats.npy
+│   │   ├── Benign-Gmail-Gmail_stats.npy
+│   │   ├── Benign-MySQL-MySQL_stats.npy
+│   │   ├── Benign-Outlook-Outlook_stats.npy
+│   │   ├── Benign-Skype-Skype_stats.npy
+│   │   ├── Benign-SMB-SMB-1_stats.npy
+│   │   ├── Benign-SMB-SMB-2_stats.npy
+│   │   ├── Benign-Weibo-Weibo-1_stats.npy
+│   │   ├── Benign-Weibo-Weibo-2_stats.npy
+│   │   ├── Benign-Weibo-Weibo-3_stats.npy
+│   │   ├── Benign-Weibo-Weibo-4_stats.npy
+│   │   ├── Benign-WorldOfWarcraft-WorldOfWarcraft_stats.npy
+│   │   ├── Malware-Cridex-Cridex_stats.npy
+│   │   ├── Malware-Geodo-Geodo_stats.npy
+│   │   ├── Malware-Htbot-Htbot_stats.npy
+│   │   ├── Malware-Miuref-Miuref_stats.npy
+│   │   ├── Malware-Neris-Neris_stats.npy
+│   │   ├── Malware-Shifu-Shifu_stats.npy
+│   │   ├── Malware-Tinba-Tinba_stats.npy
+│   │   ├── Malware-Virut-Virut_stats.npy
+│   │   └── Malware-Zeus-Zeus_stats.npy
+│   └── USTC-TFC2016_RAW
+│       ├── USTC-TFC2016-master
+│       │   ├── Benign
+│       │   │   ├── BitTorrent.pcap
+│       │   │   ├── Facetime.pcap
+│       │   │   ├── FTP.pcap
+│       │   │   ├── Gmail.pcap
+│       │   │   ├── MySQL.pcap
+│       │   │   ├── Outlook.pcap
+│       │   │   ├── Skype.pcap
+│       │   │   ├── SMB
+│       │   │   │   ├── SMB-1.pcap
+│       │   │   │   └── SMB-2.pcap
+│       │   │   ├── Weibo
+│       │   │   │   ├── Weibo-1.pcap
+│       │   │   │   ├── Weibo-2.pcap
+│       │   │   │   ├── Weibo-3.pcap
+│       │   │   │   └── Weibo-4.pcap
+│       │   │   └── WorldOfWarcraft.pcap
+│       │   ├── LICENSE
+│       │   ├── Malware
+│       │   │   ├── Cridex.pcap
+│       │   │   ├── Geodo.pcap
+│       │   │   ├── Htbot.pcap
+│       │   │   ├── Miuref.pcap
+│       │   │   ├── Neris.pcap
+│       │   │   ├── Nsis-ay.pcap
+│       │   │   ├── Shifu.pcap
+│       │   │   ├── Tinba.pcap
+│       │   │   ├── Virut.pcap
+│       │   │   └── Zeus.pcap
+│       │   └── README.md
+│       └── USTC-TFC2016_master.zip
+├── dataset
+│   ├── dataset_all.py
+│   ├── dataset_cic_iot2022.py
+│   ├── dataset_common.py
+│   ├── dataset_cross_platform.py
+│   ├── dataset_iscx_tor2016.py
+│   ├── dataset_iscx_vpn2016.py
+│   ├── dataset_ustc_tfc2016.py
+│   ├── __pycache__
+│   │   └── dataset_common.cpython-310.pyc
+│   └── README.md
+├── logs
+│   └── 77634_hybrid_run.out
+├── mamba-1p1p1
+│   ├── assets
+│   │   └── selection.png
+│   ├── AUTHORS
+│   ├── benchmarks
+│   │   └── benchmark_generation_mamba_simple.py
+│   ├── build
+│   │   ├── bdist.linux-x86_64
+│   │   ├── lib.linux-x86_64-cpython-310
+│   │   │   ├── mamba_ssm
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── models
+│   │   │   │   │   ├── config_mamba.py
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   └── mixer_seq_simple.py
+│   │   │   │   ├── modules
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   └── mamba_simple.py
+│   │   │   │   ├── ops
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── selective_scan_interface.py
+│   │   │   │   │   └── triton
+│   │   │   │   │       ├── __init__.py
+│   │   │   │   │       ├── layernorm.py
+│   │   │   │   │       └── selective_state_update.py
+│   │   │   │   └── utils
+│   │   │   │       ├── generation.py
+│   │   │   │       ├── hf.py
+│   │   │   │       └── __init__.py
+│   │   │   └── selective_scan_cuda.cpython-310-x86_64-linux-gnu.so
+│   │   └── temp.linux-x86_64-cpython-310
+│   │       ├── build.ninja
+│   │       └── csrc
+│   │           └── selective_scan
+│   │               ├── selective_scan_bwd_bf16_complex.o
+│   │               ├── selective_scan_bwd_bf16_real.o
+│   │               ├── selective_scan_bwd_fp16_complex.o
+│   │               ├── selective_scan_bwd_fp16_real.o
+│   │               ├── selective_scan_bwd_fp32_complex.o
+│   │               ├── selective_scan_bwd_fp32_real.o
+│   │               ├── selective_scan_fwd_bf16.o
+│   │               ├── selective_scan_fwd_fp16.o
+│   │               ├── selective_scan_fwd_fp32.o
+│   │               └── selective_scan.o
+│   ├── csrc
+│   │   └── selective_scan
+│   │       ├── reverse_scan.cuh
+│   │       ├── selective_scan_bwd_bf16_complex.cu
+│   │       ├── selective_scan_bwd_bf16_real.cu
+│   │       ├── selective_scan_bwd_fp16_complex.cu
+│   │       ├── selective_scan_bwd_fp16_real.cu
+│   │       ├── selective_scan_bwd_fp32_complex.cu
+│   │       ├── selective_scan_bwd_fp32_real.cu
+│   │       ├── selective_scan_bwd_kernel.cuh
+│   │       ├── selective_scan_common.h
+│   │       ├── selective_scan.cpp
+│   │       ├── selective_scan_fwd_bf16.cu
+│   │       ├── selective_scan_fwd_fp16.cu
+│   │       ├── selective_scan_fwd_fp32.cu
+│   │       ├── selective_scan_fwd_kernel.cuh
+│   │       ├── selective_scan.h
+│   │       ├── static_switch.h
+│   │       └── uninitialized_copy.cuh
+│   ├── evals
+│   │   └── lm_harness_eval.py
+│   ├── LICENSE
+│   ├── mamba_ssm
+│   │   ├── __init__.py
+│   │   ├── models
+│   │   │   ├── config_mamba.py
+│   │   │   ├── __init__.py
+│   │   │   └── mixer_seq_simple.py
+│   │   ├── modules
+│   │   │   ├── __init__.py
+│   │   │   └── mamba_simple.py
+│   │   ├── ops
+│   │   │   ├── __init__.py
+│   │   │   ├── __pycache__
+│   │   │   │   ├── __init__.cpython-310.pyc
+│   │   │   │   └── selective_scan_interface.cpython-310.pyc
+│   │   │   ├── selective_scan_interface.py
+│   │   │   └── triton
+│   │   │       ├── __init__.py
+│   │   │       ├── layernorm.py
+│   │   │       └── selective_state_update.py
+│   │   ├── __pycache__
+│   │   │   └── __init__.cpython-310.pyc
+│   │   └── utils
+│   │       ├── generation.py
+│   │       ├── hf.py
+│   │       └── __init__.py
+│   ├── mamba_ssm.egg-info
+│   │   ├── dependency_links.txt
+│   │   ├── PKG-INFO
+│   │   ├── requires.txt
+│   │   ├── SOURCES.txt
+│   │   └── top_level.txt
+│   ├── README.md
+│   ├── setup.py
+│   └── tests
+│       └── ops
+│           ├── test_selective_scan.py
+│           └── triton
+│               └── test_selective_state_update.py
+├── output
+│   └── hybrid_netmamba_run1
+│       ├── checkpoint-0.pth
+│       ├── checkpoint-100.pth
+│       ├── checkpoint-10.pth
+│       ├── checkpoint-110.pth
+│       ├── checkpoint-120.pth
+│       ├── checkpoint-130.pth
+│       ├── checkpoint-140.pth
+│       ├── checkpoint-150.pth
+│       ├── checkpoint-160.pth
+│       ├── checkpoint-170.pth
+│       ├── checkpoint-180.pth
+│       ├── checkpoint-190.pth
+│       ├── checkpoint-200.pth
+│       ├── checkpoint-20.pth
+│       ├── checkpoint-210.pth
+│       ├── checkpoint-220.pth
+│       ├── checkpoint-230.pth
+│       ├── checkpoint-240.pth
+│       ├── checkpoint-250.pth
+│       ├── checkpoint-260.pth
+│       ├── checkpoint-270.pth
+│       ├── checkpoint-280.pth
+│       ├── checkpoint-290.pth
+│       ├── checkpoint-300.pth
+│       ├── checkpoint-30.pth
+│       ├── checkpoint-310.pth
+│       ├── checkpoint-320.pth
+│       ├── checkpoint-330.pth
+│       ├── checkpoint-340.pth
+│       ├── checkpoint-350.pth
+│       ├── checkpoint-360.pth
+│       ├── checkpoint-370.pth
+│       ├── checkpoint-380.pth
+│       ├── checkpoint-390.pth
+│       ├── checkpoint-399.pth
+│       ├── checkpoint-40.pth
+│       ├── checkpoint-50.pth
+│       ├── checkpoint-60.pth
+│       ├── checkpoint-70.pth
+│       ├── checkpoint-80.pth
+│       ├── checkpoint-90.pth
+│       ├── log.txt
+│       └── tensorboard
+│           ├── events.out.tfevents.1773680094.gpu06.1488025.0
+│           ├── events.out.tfevents.1773719920.gpu06.2086676.0
+│           ├── events.out.tfevents.1773720405.gpu06.2093472.0
+│           ├── events.out.tfevents.1773726888.gpu02.1035906.0
+│           ├── events.out.tfevents.1773727955.gpu05.1457033.0
+│           ├── events.out.tfevents.1773728609.gpu05.1459969.0
+│           └── events.out.tfevents.1773758465.gpu05.1562379.0
+├── output.txt
+├── README.md
+├── requirements.txt
+├── src
+│   ├── engine.py
+│   ├── eval.py
+│   ├── fine-tune.py
+│   ├── models_mamba.py
+│   ├── models_net_mamba.py
+│   ├── pre-train.py
+│   ├── __pycache__
+│   │   ├── engine.cpython-310.pyc
+│   │   ├── models_mamba.cpython-310.pyc
+│   │   └── models_net_mamba.cpython-310.pyc
+│   └── util
+│       ├── crop.py
+│       ├── __init__.py
+│       ├── lars.py
+│       ├── lr_decay.py
+│       ├── lr_sched.py
+│       ├── misc.py
+│       ├── pos_embed.py
+│       └── __pycache__
+│           ├── crop.cpython-310.pyc
+│           ├── __init__.cpython-310.pyc
+│           ├── lars.cpython-310.pyc
+│           ├── lr_decay.cpython-310.pyc
+│           ├── lr_sched.cpython-310.pyc
+│           ├── misc.cpython-310.pyc
+│           └── pos_embed.cpython-310.pyc
+├── submit.sh
+└── util
+    └── pcap_tool
+        └── splitter
+
+83 directories, 483276 files
