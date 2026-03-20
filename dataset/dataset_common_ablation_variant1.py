@@ -53,7 +53,6 @@ class MultimodalTrafficDataset(Dataset):
         item = self.samples[idx]
         imgs = fast_read_pcap_bytes(item["pcap"])
         
-        # [Nety 保留点] 读取并填充统计特征
         stat = self.stats_cache.get(item["sf_name"], {"pl": [0]*100, "iat": [0.0]*100})
         pl_data = stat.get("pl", [])[:100]
         iat_data = stat.get("iat", [])[:100]
@@ -61,7 +60,12 @@ class MultimodalTrafficDataset(Dataset):
         pl_data += [0] * (100 - len(pl_data))
         iat_data += [0.0] * (100 - len(iat_data))
         
-        pl_tensor = torch.tensor(pl_data, dtype=torch.float32) / 1500.0
-        iat_tensor = torch.tensor(iat_data, dtype=torch.float32)
+        # [Nety 核心护甲：归一化处理]
+        pl_tensor = torch.nan_to_num(torch.tensor(pl_data, dtype=torch.float32) / 1500.0)
+        
+        # [Nety 绝杀 Bug 的武器：对数压缩，防止数值爆炸撑破 Float16！]
+        iat_raw = torch.tensor(iat_data, dtype=torch.float32)
+        iat_raw = torch.clamp(iat_raw, min=0.0) # 剔除罕见的负数时间异常
+        iat_tensor = torch.nan_to_num(torch.log1p(iat_raw)) 
         
         return imgs, pl_tensor, iat_tensor, item["label"]

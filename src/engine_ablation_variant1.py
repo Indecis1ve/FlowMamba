@@ -11,7 +11,6 @@ def train_one_epoch(model, criterion, data_loader, optimizer, device, epoch, los
     for data_iter_step, batch in enumerate(metric_logger.log_every(data_loader, 20, f'Epoch: [{epoch}]')):
         if data_iter_step % accum_iter == 0: lr_sched.adjust_learning_rate(optimizer, data_iter_step / len(data_loader) + epoch, args)
         
-        # [Nety 解包] 提取多模态特征
         imgs, pl, iat, targets = batch
         imgs = imgs.to(device, non_blocking=True)
         pl = pl.to(device, non_blocking=True)
@@ -23,7 +22,11 @@ def train_one_epoch(model, criterion, data_loader, optimizer, device, epoch, los
             loss = criterion(outputs, targets)
             
         loss_value = loss.item()
-        if not math.isfinite(loss_value): sys.exit(1)
+        
+        # [Nety 核心修复：就算死，也要死得明明白白！]
+        if not math.isfinite(loss_value): 
+            print(f"!!! 致命错误: Loss 变成 {loss_value} 啦 !!!")
+            sys.exit(1)
         
         if isinstance(loss_scaler, NativeScaler):
             loss /= accum_iter

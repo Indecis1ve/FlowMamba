@@ -21,7 +21,7 @@ def get_args_parser():
     parser.add_argument('--drop_path', type=float, default=0.1)
     parser.add_argument('--weight_decay', type=float, default=0.05)
     parser.add_argument('--lr', type=float, default=None)
-    parser.add_argument('--blr', type=float, default=1e-3)
+    parser.add_argument('--blr', type=float, default=1e-4)
     parser.add_argument('--layer_decay', type=float, default=0.75)
     parser.add_argument('--min_lr', type=float, default=1e-6)
     parser.add_argument('--warmup_epochs', type=int, default=20)

@@ -4,6 +4,7 @@
 #SBATCH -N 1
 #SBATCH -n 8
 #SBATCH --gres=gpu:1
+#SBATCH --mem=64G
 #SBATCH --time=48:00:00
 #SBATCH -o logs/variant1_%j.out
 
@@ -20,5 +21,5 @@ python src/fine-tune_ablation_variant1.py \
     --epochs 400 \
     --output_dir output/ablation_variant1_run1 \
     --log_dir output/ablation_variant1_run1 \
-    --num_workers 8 \
+    --num_workers 8\
     --pin_mem
